@@ -1,0 +1,8 @@
+*.xcuserstate
+*.xcbkptlist
+.DS_Store
+*.pbxuser
+xcuserdata
+*.xccheckout
+contents.xcworkspacedata
+
