@@ -36,60 +36,6 @@
     self = [super initWithCoder:aDecoder];
     if(self) {
         [self setDefaultValues];
-        
-        if([aDecoder.decodeObject[@"minColor"] isKindOfClass:[UIColor class]]) {
-            self.minColor = aDecoder.decodeObject[@"minColor"];
-        }
-        else {
-            self.minColor = [UIColor lightGrayColor];
-        }
-        
-        if([aDecoder.decodeObject[@"maxColor"] isKindOfClass:[UIColor class]]) {
-            self.maxColor = aDecoder.decodeObject[@"maxColor"];
-        }
-        else {
-            self.maxColor = [UIColor darkGrayColor];
-        }
-        
-        if([aDecoder.decodeObject[@"value"] isKindOfClass:[NSNumber class]]) {
-            currentValue = [aDecoder.decodeObject[@"value"] floatValue];
-        }
-        else {
-            currentValue = 0.0f;
-        }
-        
-        if([aDecoder.decodeObject[@"minValue"] isKindOfClass:[NSNumber class]]) {
-            self.minValue = [aDecoder.decodeObject[@"minValue"] floatValue];
-        }
-        else {
-            self.minValue = 1.0f;
-        }
-        
-        if([aDecoder.decodeObject[@"maxValue"] isKindOfClass:[NSNumber class]]) {
-            self.maxValue = [aDecoder.decodeObject[@"maxValue"] floatValue];
-        }
-        else {
-            self.maxValue = 1.0f;
-        }
-        
-        if([aDecoder.decodeObject[@"minimumValueImage"] isKindOfClass:[UIImage class]]) {
-            self.minValueImage = aDecoder.decodeObject[@"minimumValueImage"];
-        }
-        
-        if([aDecoder.decodeObject[@"maximumValueImage"] isKindOfClass:[UIImage class]]) {
-            self.maxValueImage = aDecoder.decodeObject[@"maximumValueImage"];
-        }
-        
-        if([aDecoder.decodeObject[@"thickness"] isKindOfClass:[NSNumber class]]) {
-            self.thickness = [aDecoder.decodeObject[@"thickness"] floatValue];
-        }
-        else {
-            self.thickness = 2.0f;
-        }
-        
-        if([aDecoder.decodeObject[@"thumbIcon"] isKindOfClass:[UIImage class]]) {
-            self.thumbIcon = aDecoder.decodeObject[@"thumbIcon"];
-        }
         [self setup];
     }
     return self;
@@ -102,24 +48,6 @@
         [self setup];
     }
     return self;
-}
-
--(void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-    
-    [aCoder encodeObject:self.minColor forKey:@"minColor"];
-    [aCoder encodeObject:self.maxColor forKey:@"maxColor"];
-    
-    [aCoder encodeObject:@(currentValue) forKey:@"value"];
-    [aCoder encodeObject:@(self.minValue) forKey:@"minValue"];
-    [aCoder encodeObject:@(self.maxValue) forKey:@"maxValue"];
-    [aCoder encodeObject:self.thumbColor forKey:@"thumbColor"];
-    
-    [aCoder encodeObject:self.minValueImage forKey:@"minValueImage"];
-    [aCoder encodeObject:self.maxValueImage forKey:@"maxValueImage"];
-    
-    [aCoder encodeObject:@(self.thickness) forKey:@"thickness"];
-    [aCoder encodeObject:self.thumbIcon forKey:@"thumbIcon"];
 }
 
 -(void)setDefaultValues {
@@ -155,7 +83,7 @@
 
 -(void)layoutSublayersOfLayer:(CALayer *)layer {
     
-    [super layoutSublayersOfLayer:layer];
+    //[super layoutSublayersOfLayer:layer];
     
     if(layer != self.layer) {
         return;
@@ -206,7 +134,7 @@
     
     _thumbIconLayer.position = CGPointMake(halfSize, halfSize);
     _thumbIconLayer.bounds = CGRectMake(0, 0, layerSize, layerSize);
-    [self updateThumbPosition:false];
+    [self updateThumbPosition:NO];
 }
 
 -(void) updateThumbPosition:(BOOL) animated {
@@ -237,23 +165,23 @@
     CGRect r = CGRectMake(center.x - diameter/2.0, center.y - diameter/2.0, diameter,  diameter);
     if(CGRectContainsPoint(r, pt)) {
         [self sendActionsForControlEvents:UIControlEventTouchDown];
-        return true;
+        return YES;
     }
-    return false;
+    return NO;
 }
 
 -(BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     
     CGPoint pt = [touch locationInView:self];
     CGFloat newValue = [self valueForLocation:pt];
-    [self setValue:newValue animated:false];
+    [self setValue:newValue animated:NO];
     if(continuous){
         [self sendActionsForControlEvents:UIControlEventValueChanged];
         if(self.actionBlock) {
             self.actionBlock(self,newValue);
         }
     }
-    return true;
+    return YES;
 }
 
 -(void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -261,7 +189,7 @@
     if(touch) {
         CGPoint pt = [touch locationInView:self];
         CGFloat newValue = [self valueForLocation:pt];
-        [self setValue:newValue animated:false];
+        [self setValue:newValue animated:NO];
     }
     if(self.actionBlock) {
         self.actionBlock(self,currentValue);
@@ -418,12 +346,12 @@
         
         [_minColor getHue:&h saturation:&s brightness:&l alpha:&a];
         
-        CGFloat cnt = 40.0f;
+        CGFloat cnt = 10.0f;
         CGFloat step = 1.0f / cnt;
         
         NSMutableArray *colors = [NSMutableArray new];
         NSMutableArray<NSNumber*> *locations = [NSMutableArray new];
-        for (CGFloat f = 0.0; f<=cnt; f+=step) {
+        for (CGFloat f = 0.0; f<cnt; f+=step) {
             [locations addObject:@(step*f)];
             [colors addObject:(id)[UIColor colorWithHue:step*f saturation:s brightness:l alpha:a].CGColor];
         }
@@ -439,7 +367,6 @@
         _trackLayer.colors = @[(id)_minColor.CGColor, (id)_maxColor.CGColor];
         _trackLayer.locations = @[@0.0,@1.0];
     }
-    
 }
 
 @end

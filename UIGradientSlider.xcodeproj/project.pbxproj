@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F0FD29111EF3BFF400E1B687 /* UIGradientApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIGradientApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0FD29111EF3BFF400E1B687 /* UIGradientSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIGradientSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FD29151EF3BFF400E1B687 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F0FD29171EF3BFF400E1B687 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F0FD29181EF3BFF400E1B687 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		F0FD29121EF3BFF400E1B687 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F0FD29111EF3BFF400E1B687 /* UIGradientApp.app */,
+				F0FD29111EF3BFF400E1B687 /* UIGradientSlider.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,9 +96,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F0FD29101EF3BFF400E1B687 /* UIGradientApp */ = {
+		F0FD29101EF3BFF400E1B687 /* UIGradientSlider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F0FD29281EF3BFF400E1B687 /* Build configuration list for PBXNativeTarget "UIGradientApp" */;
+			buildConfigurationList = F0FD29281EF3BFF400E1B687 /* Build configuration list for PBXNativeTarget "UIGradientSlider" */;
 			buildPhases = (
 				F0FD290D1EF3BFF400E1B687 /* Sources */,
 				F0FD290E1EF3BFF400E1B687 /* Frameworks */,
@@ -108,9 +108,9 @@
 			);
 			dependencies = (
 			);
-			name = UIGradientApp;
+			name = UIGradientSlider;
 			productName = UIGradientSlider;
-			productReference = F0FD29111EF3BFF400E1B687 /* UIGradientApp.app */;
+			productReference = F0FD29111EF3BFF400E1B687 /* UIGradientSlider.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -129,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F0FD290C1EF3BFF400E1B687 /* Build configuration list for PBXProject "UIGradientApp" */;
+			buildConfigurationList = F0FD290C1EF3BFF400E1B687 /* Build configuration list for PBXProject "UIGradientSlider" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -142,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F0FD29101EF3BFF400E1B687 /* UIGradientApp */,
+				F0FD29101EF3BFF400E1B687 /* UIGradientSlider */,
 			);
 		};
 /* End PBXProject section */
@@ -313,7 +313,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F0FD290C1EF3BFF400E1B687 /* Build configuration list for PBXProject "UIGradientApp" */ = {
+		F0FD290C1EF3BFF400E1B687 /* Build configuration list for PBXProject "UIGradientSlider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F0FD29261EF3BFF400E1B687 /* Debug */,
@@ -322,13 +322,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F0FD29281EF3BFF400E1B687 /* Build configuration list for PBXNativeTarget "UIGradientApp" */ = {
+		F0FD29281EF3BFF400E1B687 /* Build configuration list for PBXNativeTarget "UIGradientSlider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F0FD29291EF3BFF400E1B687 /* Debug */,
 				F0FD292A1EF3BFF400E1B687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIGradientSlider.h"
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIGradientSlider *slider;
 
 @end
 
