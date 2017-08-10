@@ -26,8 +26,6 @@
 @property (nonatomic, strong) CALayer *maxTrackImageLayer;
 @property (nonatomic, strong, readonly) CALayer *thumbIconLayer;
 
-@property (nonatomic) CGFloat thumbSize;
-
 @end
 
 @implementation UIGradientSlider
@@ -60,6 +58,8 @@
     currentValue = 0.0f;
     continuous = YES;
     _thumbSize = defaultThumbSize;
+    _thumbBorderWidth = 5.0f;
+    _thumbBorderColor = [UIColor whiteColor];
 }
 
 -(void)setup {
@@ -67,7 +67,6 @@
     [self.layer addSublayer:self.trackLayer];
     [self.layer addSublayer:self.thumbLayer];
     [self.thumbLayer addSublayer:self.thumbIconLayer];
-    
 }
 
 -(CGSize) intrinsicContentSize {
@@ -178,7 +177,7 @@
     if(continuous){
         [self sendActionsForControlEvents:UIControlEventValueChanged];
         if(self.actionBlock) {
-            self.actionBlock(self,newValue);
+            self.actionBlock(self,newValue, NO);
         }
     }
     return YES;
@@ -192,7 +191,7 @@
         [self setValue:newValue animated:NO];
     }
     if(self.actionBlock) {
-        self.actionBlock(self,currentValue);
+        self.actionBlock(self,currentValue, YES);
     }
     [self sendActionsForControlEvents:UIControlEventValueChanged|UIControlEventTouchUpInside];
 }
@@ -244,10 +243,6 @@
     [self updateTrackColors];
 }
 
--(CGFloat)thumbSize {
-    return _thumbSize;
-}
-
 -(UIColor *)thumbColor
 {
     CGColorRef color = _thumbIconLayer.backgroundColor;
@@ -261,6 +256,22 @@
     _thumbIconLayer.backgroundColor = thumbColor.CGColor;
 }
 
+-(void)setThumbBorderWidth:(CGFloat)thumbBorderWidth {
+    _thumbLayer.borderWidth = thumbBorderWidth;
+}
+
+-(void)setThumbBorderColor:(UIColor *)thumbBorderColor {
+    _thumbLayer.borderColor = thumbBorderColor.CGColor;
+}
+
+-(void)setTrackBorderWidth:(CGFloat)trackBorderWidth {
+    _trackLayer.borderWidth = trackBorderWidth;
+}
+
+-(void)setTrackBorderColor:(UIColor *)trackBorderColor {
+    _trackLayer.borderColor = trackBorderColor.CGColor;
+}
+
 -(CALayer*)thumbLayer
 {
     if(!_thumbLayer) {
@@ -268,12 +279,8 @@
         _thumbLayer.cornerRadius = defaultThumbSize/2.0;
         _thumbLayer.bounds = CGRectMake(0, 0, defaultThumbSize, defaultThumbSize);
         _thumbLayer.backgroundColor = [UIColor whiteColor].CGColor;
-        _thumbLayer.shadowColor = [UIColor blackColor].CGColor;
-        _thumbLayer.shadowOffset = CGSizeMake(0.0, 2.5);
-        _thumbLayer.shadowRadius = 2.0;
-        _thumbLayer.shadowOpacity = 0.25;
-        _thumbLayer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.15].CGColor;
-        _thumbLayer.borderWidth = 0.5;
+        _thumbLayer.borderColor = _thumbBorderColor.CGColor;
+        _thumbLayer.borderWidth = _thumbBorderWidth;
         
     }
     return _thumbLayer;
@@ -368,5 +375,17 @@
         _trackLayer.locations = @[@0.0,@1.0];
     }
 }
+
+-(UIColor *)valueColor
+{
+    if(_isRainbow){
+        CGFloat diff = _maxValue - _minValue;
+        if(diff != 0) {
+            return  [UIColor colorWithHue:currentValue/diff saturation:1.0 brightness:1.0 alpha:1.0];
+        }
+    }
+    return [UIColor whiteColor];
+}
+
 
 @end
