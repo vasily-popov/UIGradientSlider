@@ -111,14 +111,18 @@ Besides the background gradient, the track is customizable in several ways using
 - `thickness:CGFloat` This sets the track’s thickness. The default value is 2pts
 - `borderColor:UIColor` This sets the color of the track’s border. The default value is black.
 - `borderWidth:CGFloat` This sets the width of the track’s border. The default value is 0 (i.e. no border).
-- `minimumValueImage:UIImage?` This places an image to the left of the track. Setting it to nil removes any image which is there. The default value is nil (i.e. no image).
-- `maximumValueImage:UIImage?` This places an image to the right of the track. Setting it to nil removes any image which is there. The default value is nil (i.e. no image). 
+- `minimumValueImage:UIImage` This places an image to the left of the track. Setting it to nil removes any image which is there. The default value is nil (i.e. no image).
+- `maximumValueImage:UIImage` This places an image to the right of the track. Setting it to nil removes any image which is there. The default value is nil (i.e. no image). 
+- `trackBorderWidth:CGFloat` This sets the border width for track(slider).
+- `trackBorderColor:UIColor` This sets the border color for track(slider).
 	 
 ## Customizing the Thumb
 The thumb can be resized, given a custom color or an icon (it can not have both a color and an icon at the same time). To customize the thumb, use the following properties:
 - `thumbSize:CGFloat` This sets the diameter of the thumb. Note: Resizing the thumb may change the slider’s intrisicContentSize. The default is 28.0 pts.
 - `thumbColor:UIColor` This sets the color displayed by the thumb. When the thumb has an associated icon, the color is automatically set to clearColor, and setting a new color removes the icon. The default value is White.
-- `thumbIcon:UIImage?` This sets the image to display inside the slider’s thumb. Setting an image automatically removes the thumbColor, and setting a color removes the icon. The default value is nil (i.e. no image)
+- `thumbIcon:UIImage` This sets the image to display inside the slider’s thumb. Setting an image automatically removes the thumbColor, and setting a color removes the icon. The default value is nil (i.e. no image)
+- `thumbBorderColor:UIColor` This sets the border color for thumb.
+- `thumbBorderWidth:CGFloat` This sets the border width for thumb.
 
 ## License
 The MIT License (MIT)
